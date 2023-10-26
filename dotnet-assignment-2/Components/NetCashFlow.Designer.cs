@@ -1,4 +1,4 @@
-﻿namespace dotnet_assignment_2
+﻿namespace dotnet_assignment_2.Components
 {
     partial class NetCashFlow
     {

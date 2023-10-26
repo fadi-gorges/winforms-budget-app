@@ -1,11 +1,14 @@
 using dotnet_assignment_2;
+using dotnet_assignment_2.Models;
 
-namespace _31927_Assignment_2
+namespace dotnet_assignment_2.Components
 {
     public partial class Homepage : Form
     {
-        public Homepage()
+        private User user;
+        public Homepage(User user)
         {
+            this.user = user;
             InitializeComponent();
         }
 

@@ -1,18 +1,19 @@
-﻿namespace _31927_Assignment_2
+﻿namespace dotnet_assignment_2.Models
 {
     public class Expense : Transaction
     {
-        private string category;
+        public string Category { get; set; } = string.Empty;
 
-        public Expense(double nominal, string category, DateTime date, string notes) : base(nominal, date, notes)
+        public Expense(){ }
+        public Expense(double nominal, string category, DateTime date, string notes, User user) : base(nominal, date, notes, user)
         {
-            this.category = category;
+            this.Category = category;
         }
-        public override void SaveToDatabase()
+        public void SaveToDatabase()
         {
             int id = GenerateID();
             string filePath = "transaction.txt"; // Define the file path where user data is stored
-            string content = $"\n{id};{this.Nominal};{this.Date.Year}-{this.Date.Month}-{this.Date.Date};{this.Notes};000000;{this.category};E"; // Create a string containing transaction data to be written to the file
+            string content = $"\n{id};{Nominal};{Date.Year}-{Date.Month}-{Date.Date};{Notes};000000;{Category};E"; // Create a string containing transaction data to be written to the file
             if (File.Exists(filePath)) // If the file exists, append the user data to it
             {
                 File.AppendAllText(filePath, content);
@@ -22,7 +23,6 @@
                 File.WriteAllText(filePath, content);
             }
         }
-        public string Category { get => category; set => category = value; }
     }
 
 }

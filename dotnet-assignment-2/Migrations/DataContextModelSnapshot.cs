@@ -32,26 +32,6 @@ namespace dotnet_assignment_2.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("dotnet_assignment_2.Models.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("SubCategories");
-                });
-
             modelBuilder.Entity("dotnet_assignment_2.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -61,15 +41,16 @@ namespace dotnet_assignment_2.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Nominal")
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Nominal")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("SubCategoryId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("TransactionType")
                         .HasColumnType("INTEGER");
@@ -79,11 +60,13 @@ namespace dotnet_assignment_2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubCategoryId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("dotnet_assignment_2.Models.User", b =>
@@ -117,44 +100,33 @@ namespace dotnet_assignment_2.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("dotnet_assignment_2.Models.SubCategory", b =>
+            modelBuilder.Entity("dotnet_assignment_2.Models.Expense", b =>
                 {
-                    b.HasOne("dotnet_assignment_2.Models.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("dotnet_assignment_2.Models.Transaction");
 
-                    b.Navigation("Category");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Expense");
+                });
+
+            modelBuilder.Entity("dotnet_assignment_2.Models.Income", b =>
+                {
+                    b.HasBaseType("dotnet_assignment_2.Models.Transaction");
+
+                    b.HasDiscriminator().HasValue("Income");
                 });
 
             modelBuilder.Entity("dotnet_assignment_2.Models.Transaction", b =>
                 {
-                    b.HasOne("dotnet_assignment_2.Models.SubCategory", "SubCategory")
-                        .WithMany("Transactions")
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("dotnet_assignment_2.Models.User", "User")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SubCategory");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.Category", b =>
-                {
-                    b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.SubCategory", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("dotnet_assignment_2.Models.User", b =>

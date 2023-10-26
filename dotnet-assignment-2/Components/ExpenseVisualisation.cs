@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace dotnet_assignment_2
+namespace dotnet_assignment_2.Components
 {
-    public partial class NetCashFlow : Form
+    public partial class ExpenseVisualisation : Form
     {
-        public NetCashFlow()
+        public ExpenseVisualisation()
         {
             InitializeComponent();
         }

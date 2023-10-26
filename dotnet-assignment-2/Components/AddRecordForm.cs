@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using dotnet_assignment_2.Models;
 
-namespace _31927_Assignment_2
+namespace dotnet_assignment_2.Components
 {
     public partial class AddRecordForm : Form
     {
@@ -35,12 +36,12 @@ namespace _31927_Assignment_2
                     throw new FormatException();
                 if (transactionType == "Income")
                 {
-                    Income income = new Income(nominal, date, notes);
+                    Income income = new Income(nominal, date, notes, null);
                     income.SaveToDatabase();
                 }
                 else
                 {
-                    Expense expense = new Expense(nominal, category, date, notes);
+                    Expense expense = new Expense(nominal, category, date, notes, null);
                     expense.SaveToDatabase();
                 }
                 MessageBox.Show("Transaction successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
