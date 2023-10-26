@@ -11,8 +11,8 @@ using dotnet_assignment_2.Database;
 namespace dotnet_assignment_2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231026072633_Initial")]
-    partial class Initial
+    [Migration("20231026113411_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,32 +20,17 @@ namespace dotnet_assignment_2.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
 
-            modelBuilder.Entity("dotnet_assignment_2.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("dotnet_assignment_2.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Nominal")
@@ -63,13 +48,7 @@ namespace dotnet_assignment_2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Transactions");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("dotnet_assignment_2.Models.User", b =>
@@ -101,40 +80,6 @@ namespace dotnet_assignment_2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.Expense", b =>
-                {
-                    b.HasBaseType("dotnet_assignment_2.Models.Transaction");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasDiscriminator().HasValue("Expense");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.Income", b =>
-                {
-                    b.HasBaseType("dotnet_assignment_2.Models.Transaction");
-
-                    b.HasDiscriminator().HasValue("Income");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.Transaction", b =>
-                {
-                    b.HasOne("dotnet_assignment_2.Models.User", "User")
-                        .WithMany("Transactions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("dotnet_assignment_2.Models.User", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

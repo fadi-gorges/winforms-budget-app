@@ -15,7 +15,7 @@ namespace dotnet_assignment_2.Components
         private void AddRecordBtnAction(object sender, EventArgs e)
         {
             this.Hide();
-            AddRecordForm addRecordForm = new AddRecordForm();
+            AddRecordForm addRecordForm = new AddRecordForm(user);
             addRecordForm.ShowDialog();
             addRecordForm = null;
             this.Show();

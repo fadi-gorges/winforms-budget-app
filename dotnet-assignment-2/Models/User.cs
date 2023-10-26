@@ -12,7 +12,7 @@ namespace dotnet_assignment_2.Models
         [Required] public string FirstName { get; set; } = string.Empty;
         [Required] public string LastName { get; set; } = string.Empty;
 
-        public List<Transaction> Transactions { get; set; } = null!;
+        private List<Transaction> transactions = new List<Transaction>();
 
         public User() { }
         public User(string username, string email, string password, string firstName, string lastName)
@@ -30,9 +30,14 @@ namespace dotnet_assignment_2.Models
         {
             using(var db = new DataContext())
             {
-                db.Add(this);
+                db.Users.Add(this);
                 db.SaveChanges();
             }
+        }
+
+        public void AddTransaction(Transaction transaction)
+        {
+            transactions.Add(transaction);
         }
 
         public static User GetUser(string username, string password)

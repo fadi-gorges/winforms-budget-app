@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using dotnet_assignment_2.Models;
+﻿using dotnet_assignment_2.Models;
 
 namespace dotnet_assignment_2.Components
 {
     public partial class AddRecordForm : Form
     {
-        public AddRecordForm()
+        User user;
+        public AddRecordForm(User user)
         {
+            this.user = user;
             InitializeComponent();
         }
 
@@ -36,13 +29,13 @@ namespace dotnet_assignment_2.Components
                     throw new FormatException();
                 if (transactionType == "Income")
                 {
-                    Income income = new Income(nominal, date, notes, null);
-                    income.SaveToDatabase();
+                    Transaction income = new Transaction(nominal, date, notes, user);
+                    user.AddTransaction(income);
                 }
                 else
                 {
-                    Expense expense = new Expense(nominal, category, date, notes, null);
-                    expense.SaveToDatabase();
+                    Transaction expense = new Transaction(nominal, date, category, notes, user);
+                    user.AddTransaction(expense);
                 }
                 MessageBox.Show("Transaction successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
@@ -51,9 +44,6 @@ namespace dotnet_assignment_2.Components
             {
                 MessageBox.Show("Invalid input. Please try again!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
         }
 
         private void NominalTxt_KeyPress(object sender, KeyPressEventArgs e)
