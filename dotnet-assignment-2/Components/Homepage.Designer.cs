@@ -31,15 +31,15 @@ namespace dotnet_assignment_2.Components
         private void InitializeComponent()
         {
             addRecordBtn = new Button();
-            dateTimePicker1 = new DateTimePicker();
+            filterMonthPck = new DateTimePicker();
             expenseVisBtn = new Button();
             netCashFlowBtn = new Button();
-            dataGridView1 = new DataGridView();
+            TransactionTbl = new DataGridView();
             transactionType = new DataGridViewTextBoxColumn();
             category = new DataGridViewTextBoxColumn();
             date = new DataGridViewTextBoxColumn();
             nominal = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TransactionTbl).BeginInit();
             SuspendLayout();
             // 
             // addRecordBtn
@@ -55,15 +55,16 @@ namespace dotnet_assignment_2.Components
             addRecordBtn.UseVisualStyleBackColor = false;
             addRecordBtn.Click += AddRecordBtnAction;
             // 
-            // dateTimePicker1
+            // filterMonthPck
             // 
-            dateTimePicker1.CalendarFont = new Font("Segoe UI", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.CustomFormat = "MMM-yyyy";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(1165, 180);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(252, 39);
-            dateTimePicker1.TabIndex = 3;
+            filterMonthPck.CalendarFont = new Font("Segoe UI", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
+            filterMonthPck.CustomFormat = "MMM-yyyy";
+            filterMonthPck.Format = DateTimePickerFormat.Custom;
+            filterMonthPck.Location = new Point(1165, 180);
+            filterMonthPck.Name = "filterMonthPck";
+            filterMonthPck.Size = new Size(252, 39);
+            filterMonthPck.TabIndex = 3;
+            filterMonthPck.ValueChanged += FilterMonthPck_ValueChanged;
             // 
             // expenseVisBtn
             // 
@@ -87,19 +88,20 @@ namespace dotnet_assignment_2.Components
             netCashFlowBtn.UseVisualStyleBackColor = true;
             netCashFlowBtn.Click += NetCashFlowBtn_Click;
             // 
-            // dataGridView1
+            // TransactionTbl
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { transactionType, category, date, nominal });
-            dataGridView1.Location = new Point(26, 256);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.RowTemplate.Height = 41;
-            dataGridView1.Size = new Size(2519, 847);
-            dataGridView1.TabIndex = 6;
+            TransactionTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            TransactionTbl.Columns.AddRange(new DataGridViewColumn[] { transactionType, category, date, nominal });
+            TransactionTbl.Location = new Point(26, 256);
+            TransactionTbl.Name = "TransactionTbl";
+            TransactionTbl.RowHeadersWidth = 82;
+            TransactionTbl.RowTemplate.Height = 41;
+            TransactionTbl.Size = new Size(2519, 847);
+            TransactionTbl.TabIndex = 6;
             // 
             // transactionType
             // 
+            transactionType.DataPropertyName = "TransactionType";
             transactionType.HeaderText = "Transaction Type";
             transactionType.MinimumWidth = 10;
             transactionType.Name = "transactionType";
@@ -108,6 +110,7 @@ namespace dotnet_assignment_2.Components
             // 
             // category
             // 
+            category.DataPropertyName = "Category";
             category.HeaderText = "Category";
             category.MinimumWidth = 10;
             category.Name = "category";
@@ -116,6 +119,7 @@ namespace dotnet_assignment_2.Components
             // 
             // date
             // 
+            date.DataPropertyName = "Date";
             date.HeaderText = "Date";
             date.MinimumWidth = 10;
             date.Name = "date";
@@ -124,6 +128,7 @@ namespace dotnet_assignment_2.Components
             // 
             // nominal
             // 
+            nominal.DataPropertyName = "Nominal";
             nominal.HeaderText = "Nominal";
             nominal.MinimumWidth = 10;
             nominal.Name = "nominal";
@@ -136,16 +141,16 @@ namespace dotnet_assignment_2.Components
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 39, 39);
             ClientSize = new Size(2565, 1158);
-            Controls.Add(dataGridView1);
+            Controls.Add(TransactionTbl);
             Controls.Add(netCashFlowBtn);
             Controls.Add(expenseVisBtn);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(filterMonthPck);
             Controls.Add(addRecordBtn);
             Margin = new Padding(4, 2, 4, 2);
             Name = "Homepage";
             Text = "Dashboard";
             FormClosing += Homepage_FormClosing;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TransactionTbl).EndInit();
             ResumeLayout(false);
         }
 
@@ -154,10 +159,11 @@ namespace dotnet_assignment_2.Components
         private DateTimePicker dateTimePicker1;
         private Button expenseVisBtn;
         private Button netCashFlowBtn;
-        private DataGridView dataGridView1;
+        private DataGridView TransactionTbl;
         private DataGridViewTextBoxColumn transactionType;
         private DataGridViewTextBoxColumn category;
         private DataGridViewTextBoxColumn date;
         private DataGridViewTextBoxColumn nominal;
+        private DateTimePicker filterMonthPck;
     }
 }
