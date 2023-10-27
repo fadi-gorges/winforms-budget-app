@@ -1,4 +1,3 @@
-using dotnet_assignment_2;
 using dotnet_assignment_2.Database;
 using dotnet_assignment_2.Models;
 
@@ -32,7 +31,7 @@ namespace dotnet_assignment_2.Components
         private void ExpenseVisBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ExpenseVisualisation expenseVisualisation = new ExpenseVisualisation();
+            ExpenseVisualisation expenseVisualisation = new ExpenseVisualisation(user);
             expenseVisualisation.ShowDialog();
             expenseVisualisation = null;
             this.Show();

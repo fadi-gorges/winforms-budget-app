@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            expenseTbl = new DataGridView();
             panel1 = new Panel();
             filterMonthPck = new DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)expenseTbl).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // expenseTbl
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(33, 852);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.RowTemplate.Height = 41;
-            dataGridView1.Size = new Size(1439, 510);
-            dataGridView1.TabIndex = 3;
+            expenseTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            expenseTbl.Location = new Point(33, 906);
+            expenseTbl.Name = "expenseTbl";
+            expenseTbl.RowHeadersWidth = 82;
+            expenseTbl.RowTemplate.Height = 41;
+            expenseTbl.Size = new Size(1439, 425);
+            expenseTbl.TabIndex = 3;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(64, 64, 64);
             panel1.Location = new Point(33, 91);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1439, 739);
+            panel1.Size = new Size(1439, 790);
             panel1.TabIndex = 2;
             // 
             // filterMonthPck
@@ -61,25 +61,26 @@
             filterMonthPck.Name = "filterMonthPck";
             filterMonthPck.Size = new Size(252, 39);
             filterMonthPck.TabIndex = 5;
+            filterMonthPck.ValueChanged += FilterMonthPck_ValueChanged;
             // 
             // ExpenseVisualisation
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 39, 39);
-            ClientSize = new Size(1510, 1388);
+            ClientSize = new Size(1510, 1354);
             Controls.Add(filterMonthPck);
-            Controls.Add(dataGridView1);
+            Controls.Add(expenseTbl);
             Controls.Add(panel1);
             Name = "ExpenseVisualisation";
             Text = "ExpenseVisualisation";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)expenseTbl).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView expenseTbl;
         private Panel panel1;
         private DateTimePicker filterMonthPck;
     }

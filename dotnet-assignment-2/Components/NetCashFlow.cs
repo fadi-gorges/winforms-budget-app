@@ -5,7 +5,7 @@ namespace dotnet_assignment_2.Components
 {
     public partial class NetCashFlow : Form
     {
-        User user;
+        private User user;
         public NetCashFlow(User user)
         {
             this.user = user;
