@@ -1,6 +1,4 @@
-﻿using dotnet_assignment_2.Database;
-using dotnet_assignment_2.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using dotnet_assignment_2.Models;
 
 namespace dotnet_assignment_2.Components
 {
@@ -9,8 +7,6 @@ namespace dotnet_assignment_2.Components
         public SignUp()
         {
             InitializeComponent();
-            using DataContext context = new DataContext();
-            context.Database.Migrate();
         }
 
         private void SignUpBtn_Click(object sender, EventArgs e)

@@ -24,16 +24,6 @@ namespace dotnet_assignment_2.Components
             LoadTransactionTable();
         }
 
-        private void AccountListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Homepage_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -51,7 +41,7 @@ namespace dotnet_assignment_2.Components
         private void NetCashFlowBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            NetCashFlow netCashFlow = new NetCashFlow();
+            NetCashFlow netCashFlow = new NetCashFlow(user);
             netCashFlow.ShowDialog();
             netCashFlow = null;
             this.Show();

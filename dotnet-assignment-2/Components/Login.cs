@@ -1,4 +1,6 @@
-﻿using dotnet_assignment_2.Models;
+﻿using dotnet_assignment_2.Database;
+using dotnet_assignment_2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_assignment_2.Components
 {
@@ -7,6 +9,8 @@ namespace dotnet_assignment_2.Components
         public Login()
         {
             InitializeComponent();
+            using DataContext context = new DataContext();
+            context.Database.Migrate();
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
