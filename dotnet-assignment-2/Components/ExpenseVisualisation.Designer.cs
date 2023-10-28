@@ -37,7 +37,7 @@
             panel1 = new Panel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             filterMonthPck = new DateTimePicker();
-            Category = new DataGridViewTextBoxColumn();
+            Cat = new DataGridViewTextBoxColumn();
             Nominal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)expenseTbl).BeginInit();
             panel1.SuspendLayout();
@@ -58,7 +58,7 @@
             expenseTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             expenseTbl.Location = new Point(18, 425);
             expenseTbl.Margin = new Padding(2, 1, 2, 1);
-            expenseTbl.Columns.AddRange(new DataGridViewColumn[] { Category, Nominal });
+            expenseTbl.Columns.AddRange(new DataGridViewColumn[] { Cat, Nominal });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
@@ -113,13 +113,13 @@
             filterMonthPck.TabIndex = 5;
             filterMonthPck.ValueChanged += FilterMonthPck_ValueChanged;
             // 
-            // Category
+            // Cat
             // 
-            Category.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Category.DataPropertyName = "Category";
-            Category.HeaderText = "Category";
-            Category.MinimumWidth = 10;
-            Category.Name = "Category";
+            Cat.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Cat.DataPropertyName = "Name";
+            Cat.HeaderText = "Category";
+            Cat.MinimumWidth = 10;
+            Cat.Name = "Category";
             // 
             // Nominal
             // 
@@ -153,7 +153,7 @@
         private Panel panel1;
         private DateTimePicker filterMonthPck;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private DataGridViewTextBoxColumn Category;
+        private DataGridViewTextBoxColumn Cat;
         private DataGridViewTextBoxColumn Nominal;
     }
 }

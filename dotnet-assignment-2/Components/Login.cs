@@ -30,7 +30,10 @@ namespace dotnet_assignment_2.Components
                     this.Hide();
                     Homepage homepage = new Homepage(user);
                     homepage.ShowDialog();
-                    this.Close();
+                    homepage = null;
+                    this.Show();
+                    usernameTxt.Clear();
+                    passwordTxt.Clear();
                 }
             }
             catch (FormatException)
