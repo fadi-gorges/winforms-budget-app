@@ -90,14 +90,18 @@ namespace dotnet_assignment_2.Components
             // 
             // TransactionTbl
             // 
+            TransactionTbl.AllowUserToAddRows = false;
+            TransactionTbl.AllowUserToDeleteRows = false;
             TransactionTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TransactionTbl.Columns.AddRange(new DataGridViewColumn[] { transactionType, category, date, nominal });
             TransactionTbl.Location = new Point(26, 256);
             TransactionTbl.Name = "TransactionTbl";
+            TransactionTbl.ReadOnly = true;
             TransactionTbl.RowHeadersWidth = 82;
             TransactionTbl.RowTemplate.Height = 41;
             TransactionTbl.Size = new Size(2519, 847);
             TransactionTbl.TabIndex = 6;
+            TransactionTbl.RowHeaderMouseClick += TransactionTbl_RowHeaderMouseClick;
             // 
             // transactionType
             // 

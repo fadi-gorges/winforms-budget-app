@@ -1,6 +1,6 @@
 ﻿namespace dotnet_assignment_2.Components
 {
-    partial class AddRecordForm
+    partial class TransactionDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            cancelBtn = new Button();
+            saveBtn = new Button();
             panel1 = new Panel();
             transactionTypeCmb = new ComboBox();
             categoryCmb = new ComboBox();
@@ -39,10 +41,33 @@
             label6 = new Label();
             nominalTxt = new TextBox();
             label1 = new Label();
-            saveBtn = new Button();
-            cancelBtn = new Button();
+            deleteBtn = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // cancelBtn
+            // 
+            cancelBtn.Font = new Font("Segoe UI", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
+            cancelBtn.Location = new Point(40, 727);
+            cancelBtn.Name = "cancelBtn";
+            cancelBtn.Size = new Size(681, 102);
+            cancelBtn.TabIndex = 5;
+            cancelBtn.Text = "CANCEL";
+            cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.Click += CancelBtn_Click;
+            // 
+            // saveBtn
+            // 
+            saveBtn.BackColor = Color.MediumAquamarine;
+            saveBtn.BackgroundImageLayout = ImageLayout.None;
+            saveBtn.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold, GraphicsUnit.Point);
+            saveBtn.Location = new Point(40, 852);
+            saveBtn.Name = "saveBtn";
+            saveBtn.Size = new Size(1362, 102);
+            saveBtn.TabIndex = 4;
+            saveBtn.Text = "SAVE";
+            saveBtn.UseVisualStyleBackColor = false;
+            saveBtn.Click += SaveBtn_Click;
             // 
             // panel1
             // 
@@ -57,11 +82,11 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(nominalTxt);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(56, 68);
+            panel1.Location = new Point(40, 36);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(1362, 658);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 3;
             // 
             // transactionTypeCmb
             // 
@@ -186,42 +211,32 @@
             label1.TabIndex = 0;
             label1.Text = "Nominal";
             // 
-            // saveBtn
+            // deleteBtn
             // 
-            saveBtn.BackColor = Color.MediumAquamarine;
-            saveBtn.BackgroundImageLayout = ImageLayout.None;
-            saveBtn.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold, GraphicsUnit.Point);
-            saveBtn.Location = new Point(769, 759);
-            saveBtn.Name = "saveBtn";
-            saveBtn.Size = new Size(649, 102);
-            saveBtn.TabIndex = 1;
-            saveBtn.Text = "SAVE";
-            saveBtn.UseVisualStyleBackColor = false;
-            saveBtn.Click += SaveBtn_Click;
+            deleteBtn.BackColor = Color.Firebrick;
+            deleteBtn.BackgroundImageLayout = ImageLayout.None;
+            deleteBtn.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteBtn.ForeColor = SystemColors.ButtonFace;
+            deleteBtn.Location = new Point(737, 727);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(665, 102);
+            deleteBtn.TabIndex = 6;
+            deleteBtn.Text = "DELETE";
+            deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += DeleteBtn_Click;
             // 
-            // cancelBtn
-            // 
-            cancelBtn.Font = new Font("Segoe UI", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
-            cancelBtn.Location = new Point(56, 759);
-            cancelBtn.Name = "cancelBtn";
-            cancelBtn.Size = new Size(692, 102);
-            cancelBtn.TabIndex = 2;
-            cancelBtn.Text = "CANCEL";
-            cancelBtn.UseVisualStyleBackColor = true;
-            cancelBtn.Click += CancelBtn_Click;
-            // 
-            // AddRecordForm
+            // TransactionDetails
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 39, 39);
-            ClientSize = new Size(1470, 911);
+            ClientSize = new Size(1449, 999);
+            Controls.Add(deleteBtn);
             Controls.Add(cancelBtn);
             Controls.Add(saveBtn);
             Controls.Add(panel1);
-            Margin = new Padding(4, 2, 4, 2);
-            Name = "AddRecordForm";
-            Text = "AddRecordForm";
+            Name = "TransactionDetails";
+            Text = "TransactionDetails";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -229,18 +244,19 @@
 
         #endregion
 
+        private Button cancelBtn;
+        private Button saveBtn;
         private Panel panel1;
-        private Label label1;
-        private TextBox nominalTxt;
-        private Label label6;
+        private ComboBox transactionTypeCmb;
+        private ComboBox categoryCmb;
+        private DateTimePicker datePckr;
+        private TextBox notesTxt;
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox notesTxt;
-        private DateTimePicker datePckr;
-        private ComboBox transactionTypeCmb;
-        private ComboBox categoryCmb;
-        private Button saveBtn;
-        private Button cancelBtn;
+        private Label label6;
+        private TextBox nominalTxt;
+        private Label label1;
+        private Button deleteBtn;
     }
 }

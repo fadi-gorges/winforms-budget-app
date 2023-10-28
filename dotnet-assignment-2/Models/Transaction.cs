@@ -14,6 +14,16 @@ namespace dotnet_assignment_2.Models
         public int UserId { get; set; }
 
         public Transaction() { }
+        public Transaction(int id, double nominal, DateTime date, string category, string notes, TransactionType transactionType, int UserId)
+        {
+            this.Id = id;
+            this.Nominal = nominal;
+            this.Date = date;
+            this.Category = category;
+            this.Notes = notes;
+            this.TransactionType = transactionType;
+            this.UserId = UserId;
+        }
         public Transaction(double nominal, DateTime date, string notes, User user)
         {
             this.Id = GenerateID();
@@ -36,11 +46,40 @@ namespace dotnet_assignment_2.Models
             this.UserId = user.Id;
             InsertNewTransaction();
         }
+
+        // Insert a new transaction to the database
         private void InsertNewTransaction()
         {
             using (var db = new DataContext())
             {
                 db.Transactions.Add(this);
+                db.SaveChanges();
+            }
+        }
+
+        // Update the transaction data on the database
+        public void UpdateTransactionDetails(double nominal, DateTime date, string category, string notes, TransactionType transactionType)
+        {
+            using (var db = new DataContext())
+            {
+                var transaction = db.Transactions.Where(t => t.Id == this.Id).FirstOrDefault();
+                transaction.Nominal = nominal;
+                transaction.Date = date;
+                transaction.Category = category;
+                transaction.Notes = notes;
+                transaction.TransactionType = transactionType;
+                db.SaveChanges();
+            }
+        }
+
+        // Delete the transaction from the database
+        public void DeleteTransaction()
+        {
+            var transaction = new Transaction() { Id = this.Id };
+            using (var db = new DataContext())
+            {
+                db.Attach(transaction);
+                db.Remove(transaction);
                 db.SaveChanges();
             }
         }
