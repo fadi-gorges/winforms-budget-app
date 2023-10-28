@@ -49,7 +49,7 @@ namespace dotnet_assignment_2.Components
         {
             this.Hide();
             DataGridViewRow selectedRow = TransactionTbl.SelectedRows[0];
-            Transaction transaction = new Transaction(Convert.ToInt32(selectedRow.Cells["Id"].Value.ToString()), Convert.ToDouble(selectedRow.Cells["Nominal"].Value.ToString()), DateTime.Parse(selectedRow.Cells["Date"].Value.ToString()), selectedRow.Cells["Category"].Value.ToString(), selectedRow.Cells["Notes"].Value.ToString(), selectedRow.Cells["TransactionType"].Value.ToString() == "Income" ? TransactionType.Income : TransactionType.Expense, Convert.ToInt32(selectedRow.Cells["UserId"].Value.ToString()));
+            Transaction transaction = new Transaction(Convert.ToInt32(selectedRow.Cells["Id"].Value.ToString()), Convert.ToDouble(selectedRow.Cells["Nominal"].Value.ToString()), DateTime.Parse(selectedRow.Cells["Date"].Value.ToString()), selectedRow.Cells["Category"].Value.ToString(), selectedRow.Cells["Notes"].Value.ToString(), selectedRow.Cells["TransactionType"].Value.ToString() == "Income" ? Models.TransactionType.Income : Models.TransactionType.Expense, Convert.ToInt32(selectedRow.Cells["UserId"].Value.ToString()));
             TransactionDetails transactionDetails = new TransactionDetails(transaction);
             transactionDetails.ShowDialog();
             transactionDetails = null;
