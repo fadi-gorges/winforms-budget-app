@@ -31,10 +31,14 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             expenseTbl = new DataGridView();
             panel1 = new Panel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             filterMonthPck = new DateTimePicker();
+            Category = new DataGridViewTextBoxColumn();
+            Nominal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)expenseTbl).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
@@ -42,9 +46,27 @@
             // 
             // expenseTbl
             // 
+            expenseTbl.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            expenseTbl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             expenseTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             expenseTbl.Location = new Point(18, 425);
             expenseTbl.Margin = new Padding(2, 1, 2, 1);
+            expenseTbl.Columns.AddRange(new DataGridViewColumn[] { Category, Nominal });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            expenseTbl.DefaultCellStyle = dataGridViewCellStyle2;
             expenseTbl.Name = "expenseTbl";
             expenseTbl.RowHeadersWidth = 82;
             expenseTbl.RowTemplate.Height = 41;
@@ -91,6 +113,22 @@
             filterMonthPck.TabIndex = 5;
             filterMonthPck.ValueChanged += FilterMonthPck_ValueChanged;
             // 
+            // Category
+            // 
+            Category.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Category.DataPropertyName = "Category";
+            Category.HeaderText = "Category";
+            Category.MinimumWidth = 10;
+            Category.Name = "Category";
+            // 
+            // Nominal
+            // 
+            Nominal.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Nominal.DataPropertyName = "Nominal";
+            Nominal.HeaderText = "Nominal";
+            Nominal.MinimumWidth = 10;
+            Nominal.Name = "Nominal";
+            // 
             // ExpenseVisualisation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -115,5 +153,7 @@
         private Panel panel1;
         private DateTimePicker filterMonthPck;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private DataGridViewTextBoxColumn Category;
+        private DataGridViewTextBoxColumn Nominal;
     }
 }

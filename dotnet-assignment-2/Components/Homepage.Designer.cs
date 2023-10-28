@@ -30,15 +30,18 @@ namespace dotnet_assignment_2.Components
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             addRecordBtn = new Button();
             filterMonthPck = new DateTimePicker();
             expenseVisBtn = new Button();
             netCashFlowBtn = new Button();
             TransactionTbl = new DataGridView();
-            transactionType = new DataGridViewTextBoxColumn();
-            category = new DataGridViewTextBoxColumn();
-            date = new DataGridViewTextBoxColumn();
-            nominal = new DataGridViewTextBoxColumn();
+            TransactionType = new DataGridViewTextBoxColumn();
+            Category = new DataGridViewTextBoxColumn();
+            Date = new DataGridViewTextBoxColumn();
+            Nominal = new DataGridViewTextBoxColumn();
+            Notes = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)TransactionTbl).BeginInit();
             SuspendLayout();
             // 
@@ -90,50 +93,83 @@ namespace dotnet_assignment_2.Components
             // 
             // TransactionTbl
             // 
-            TransactionTbl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TransactionTbl.Columns.AddRange(new DataGridViewColumn[] { transactionType, category, date, nominal });
+            TransactionTbl.AllowUserToAddRows = false;
+            TransactionTbl.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            TransactionTbl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            TransactionTbl.ColumnHeadersHeight = 100;
+            TransactionTbl.Columns.AddRange(new DataGridViewColumn[] { TransactionType, Category, Date, Nominal, Notes });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            TransactionTbl.DefaultCellStyle = dataGridViewCellStyle2;
             TransactionTbl.Location = new Point(26, 256);
             TransactionTbl.Name = "TransactionTbl";
+            TransactionTbl.ReadOnly = true;
             TransactionTbl.RowHeadersWidth = 82;
             TransactionTbl.RowTemplate.Height = 41;
             TransactionTbl.Size = new Size(2519, 847);
             TransactionTbl.TabIndex = 6;
+            TransactionTbl.RowHeaderMouseClick += TransactionTbl_RowHeaderMouseClick;
             // 
-            // transactionType
+            // TransactionType
             // 
-            transactionType.DataPropertyName = "TransactionType";
-            transactionType.HeaderText = "Transaction Type";
-            transactionType.MinimumWidth = 10;
-            transactionType.Name = "transactionType";
-            transactionType.ReadOnly = true;
-            transactionType.Width = 200;
+            TransactionType.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            TransactionType.DataPropertyName = "TransactionType";
+            TransactionType.HeaderText = "Transaction Type";
+            TransactionType.MinimumWidth = 250;
+            TransactionType.Name = "TransactionType";
+            TransactionType.ReadOnly = true;
+            TransactionType.Width = 410;
             // 
-            // category
+            // Category
             // 
-            category.DataPropertyName = "Category";
-            category.HeaderText = "Category";
-            category.MinimumWidth = 10;
-            category.Name = "category";
-            category.ReadOnly = true;
-            category.Width = 200;
+            Category.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Category.DataPropertyName = "Category";
+            Category.HeaderText = "Category";
+            Category.MinimumWidth = 350;
+            Category.Name = "Category";
+            Category.ReadOnly = true;
+            Category.Width = 350;
             // 
-            // date
+            // Date
             // 
-            date.DataPropertyName = "Date";
-            date.HeaderText = "Date";
-            date.MinimumWidth = 10;
-            date.Name = "date";
-            date.ReadOnly = true;
-            date.Width = 200;
+            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Date.DataPropertyName = "Date";
+            Date.HeaderText = "Date";
+            Date.MinimumWidth = 300;
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            Date.Width = 300;
             // 
-            // nominal
+            // Nominal
             // 
-            nominal.DataPropertyName = "Nominal";
-            nominal.HeaderText = "Nominal";
-            nominal.MinimumWidth = 10;
-            nominal.Name = "nominal";
-            nominal.ReadOnly = true;
-            nominal.Width = 200;
+            Nominal.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Nominal.DataPropertyName = "Nominal";
+            Nominal.HeaderText = "Nominal";
+            Nominal.MinimumWidth = 400;
+            Nominal.Name = "Nominal";
+            Nominal.ReadOnly = true;
+            Nominal.Width = 400;
+            // 
+            // Notes
+            // 
+            Notes.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Notes.DataPropertyName = "Notes";
+            Notes.HeaderText = "Notes";
+            Notes.MinimumWidth = 10;
+            Notes.Name = "Notes";
+            Notes.ReadOnly = true;
             // 
             // Homepage
             // 
@@ -160,10 +196,11 @@ namespace dotnet_assignment_2.Components
         private Button expenseVisBtn;
         private Button netCashFlowBtn;
         private DataGridView TransactionTbl;
-        private DataGridViewTextBoxColumn transactionType;
-        private DataGridViewTextBoxColumn category;
-        private DataGridViewTextBoxColumn date;
-        private DataGridViewTextBoxColumn nominal;
         private DateTimePicker filterMonthPck;
+        private DataGridViewTextBoxColumn TransactionType;
+        private DataGridViewTextBoxColumn Category;
+        private DataGridViewTextBoxColumn Date;
+        private DataGridViewTextBoxColumn Nominal;
+        private DataGridViewTextBoxColumn Notes;
     }
 }

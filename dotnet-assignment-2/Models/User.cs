@@ -12,8 +12,6 @@ namespace dotnet_assignment_2.Models
         [Required] public string FirstName { get; set; } = string.Empty;
         [Required] public string LastName { get; set; } = string.Empty;
 
-        private List<Transaction> transactions = new List<Transaction>();
-
         public User() { }
         public User(string username, string email, string password, string firstName, string lastName)
         {
@@ -33,11 +31,6 @@ namespace dotnet_assignment_2.Models
                 db.Users.Add(this);
                 db.SaveChanges();
             }
-        }
-
-        public void AddTransaction(Transaction transaction)
-        {
-            transactions.Add(transaction);
         }
 
         public static User GetUser(string username, string password)
