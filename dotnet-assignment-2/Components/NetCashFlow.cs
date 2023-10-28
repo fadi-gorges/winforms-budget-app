@@ -1,5 +1,6 @@
 ﻿using dotnet_assignment_2.Database;
 using dotnet_assignment_2.Models;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace dotnet_assignment_2.Components
 {
@@ -26,6 +27,31 @@ namespace dotnet_assignment_2.Components
                 expenseTxt.Text = expense > 0 ? expense.ToString("#.##") : "0";
                 double netCash = (income - expense);
                 netTxt.Text = netCash > 0 ? netCash.ToString("#.##") : "0";
+
+                LoadPieChart(income, expense);
+            }
+        }
+
+        private void LoadPieChart(double income, double expense)
+        {
+            chart1.Series[0].Points.Clear();
+
+            if (income > 0)
+            {
+                DataPoint point = new DataPoint();
+                point.SetValueXY("Income", income);
+                point.Label = "Income" + "\n#PERCENT{P0}";
+                point.Color = Color.LightGreen;
+                chart1.Series[0].Points.Add(point);
+            }
+
+            if (expense > 0)
+            {
+                DataPoint point = new DataPoint();
+                point.SetValueXY("Expense", expense);
+                point.Label = "Expense" + "\n#PERCENT{P0}";
+                point.Color = Color.Red;
+                chart1.Series[0].Points.Add(point);
             }
         }
     }
