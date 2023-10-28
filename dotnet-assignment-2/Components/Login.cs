@@ -10,7 +10,7 @@ namespace dotnet_assignment_2.Components
         {
             InitializeComponent();
             using DataContext context = new DataContext();
-            context.Database.Migrate();
+            context.Database.Migrate(); // Ensure that the database is up-to-date by applying any pending migrations
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -19,11 +19,15 @@ namespace dotnet_assignment_2.Components
             {
                 string username = usernameTxt.Text.ToLower();
                 string password = passwordTxt.Text;
+                // Check if either the username or password is empty
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                     throw new FormatException();
+                // Attempt to retrieve the user with the provided credentials
                 User user = User.GetUser(username, password);
-                if(user == null)
+                // If no user is found, display an error message
+                if (user == null)
                     MessageBox.Show("Invalid input! Please try again!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // If a user is found, display a welcome message and navigate to the homepage
                 else
                 {
                     MessageBox.Show($"Welcome back {user.FirstName} {user.LastName}!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -32,6 +36,7 @@ namespace dotnet_assignment_2.Components
                     homepage.ShowDialog();
                     homepage = null;
                     this.Show();
+                    // Clear the input fields
                     usernameTxt.Clear();
                     passwordTxt.Clear();
                 }
@@ -42,6 +47,7 @@ namespace dotnet_assignment_2.Components
             }
         }
 
+        // Navigate to the sign-up page
         private void SignUpBtn_Click(object sender, EventArgs e)
         {
             this.Hide();

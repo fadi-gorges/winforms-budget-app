@@ -6,7 +6,8 @@ namespace dotnet_assignment_2.Components
 {
     public partial class NetCashFlow : Form
     {
-        private User user;
+        private User user; // Store the current logged in user
+
         public NetCashFlow(User user)
         {
             this.user = user;
@@ -15,20 +16,23 @@ namespace dotnet_assignment_2.Components
         }
         private void FilterMonthPck_ValueChanged(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData(); // Event handler for changing the selected month in the filter
         }
         private void LoadData()
         {
             using (var db = new DataContext())
             {
+                // Calculate income and expense for the selected month and year
                 double income = db.Transactions.Where(t => t.UserId == user.Id && t.Date.Month == filterMonthPck.Value.Month && t.Date.Year == filterMonthPck.Value.Year && t.TransactionType == TransactionType.Income).Sum(t => t.Nominal);
                 incomeTxt.Text = income > 0 ? income.ToString("#.##") : "0";
+
                 double expense = db.Transactions.Where(t => t.UserId == user.Id && t.Date.Month == filterMonthPck.Value.Month && t.Date.Year == filterMonthPck.Value.Year && t.TransactionType == TransactionType.Expense).Sum(t => t.Nominal);
                 expenseTxt.Text = expense > 0 ? expense.ToString("#.##") : "0";
+
                 double netCash = (income - expense);
                 netTxt.Text = netCash > 0 ? netCash.ToString("#.##") : "0";
 
-                LoadPieChart(income, expense);
+                LoadPieChart(income, expense); // Update the pie chart
             }
         }
 
@@ -36,6 +40,7 @@ namespace dotnet_assignment_2.Components
         {
             chart1.Series[0].Points.Clear();
 
+            // Display income in the pie chart if it's greater than zero
             if (income > 0)
             {
                 DataPoint point = new DataPoint();
@@ -45,6 +50,7 @@ namespace dotnet_assignment_2.Components
                 chart1.Series[0].Points.Add(point);
             }
 
+            // Display expense in the pie chart if it's greater than zero
             if (expense > 0)
             {
                 DataPoint point = new DataPoint();

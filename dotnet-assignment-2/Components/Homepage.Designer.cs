@@ -185,7 +185,6 @@ namespace dotnet_assignment_2.Components
             Margin = new Padding(4, 2, 4, 2);
             Name = "Homepage";
             Text = "Dashboard";
-            FormClosing += Homepage_FormClosing;
             ((System.ComponentModel.ISupportInitialize)TransactionTbl).EndInit();
             ResumeLayout(false);
         }

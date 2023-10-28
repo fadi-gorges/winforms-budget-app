@@ -5,16 +5,18 @@ namespace dotnet_assignment_2.Models
 {
     public class Transaction
     {
+        // Properties that represent transaction data for the database attributes
         [Required] public int Id { get; set; }
         [Required] public double Nominal { get; set; }
         [Required] public DateTime Date { get; set; }
         public string Category { get; set; } = string.Empty;
         public string Notes { get; set; } = string.Empty;
-        public TransactionType TransactionType { get; set; }
+        public TransactionType TransactionType { get; set; } // Either Income or Expense
         public int UserId { get; set; }
 
-        public Transaction() { }
-        public Transaction(int id, double nominal, DateTime date, string category, string notes, TransactionType transactionType, int UserId)
+        // Constructors
+        public Transaction() { } // Default constructor
+        public Transaction(int id, double nominal, DateTime date, string category, string notes, TransactionType transactionType, int UserId) // Constructor for creating a new transaction with provided information
         {
             this.Id = id;
             this.Nominal = nominal;
@@ -24,7 +26,7 @@ namespace dotnet_assignment_2.Models
             this.TransactionType = transactionType;
             this.UserId = UserId;
         }
-        public Transaction(double nominal, DateTime date, string notes, User user)
+        public Transaction(double nominal, DateTime date, string notes, User user) // Constructor for creating a new income transaction
         {
             this.Id = GenerateID();
             this.Nominal = nominal;
@@ -35,7 +37,7 @@ namespace dotnet_assignment_2.Models
             this.UserId = user.Id;
             InsertNewTransaction();
         }
-        public Transaction(double nominal, DateTime date, string category, string notes, User user)
+        public Transaction(double nominal, DateTime date, string category, string notes, User user) // Constructor for creating a new expense transaction
         {
             this.Id = GenerateID();
             this.Nominal = nominal;
@@ -57,7 +59,7 @@ namespace dotnet_assignment_2.Models
             }
         }
 
-        // Update the transaction data on the database
+        // Method to update the details of an existing transaction in the database
         public void UpdateTransactionDetails(double nominal, DateTime date, string category, string notes, TransactionType transactionType)
         {
             using (var db = new DataContext())

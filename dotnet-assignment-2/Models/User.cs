@@ -7,6 +7,7 @@ namespace dotnet_assignment_2.Models
 {
     public class User
     {
+        // Properties that represent user data for the database attributes
         [Required] public int Id { get; set; }
         [Required] public string Username { get; set; } = string.Empty;
         [Required] public string Email { get; set; } = string.Empty;
@@ -14,8 +15,9 @@ namespace dotnet_assignment_2.Models
         [Required] public string FirstName { get; set; } = string.Empty;
         [Required] public string LastName { get; set; } = string.Empty;
 
-        public User() { }
-        public User(string username, string email, string password, string firstName, string lastName)
+        // Constructors
+        public User() { } // Default constructor
+        public User(string username, string email, string password, string firstName, string lastName) // Constructor for creating a new user with provided information
         {
             this.Id = GenerateID();
             this.Username = username;
@@ -26,6 +28,7 @@ namespace dotnet_assignment_2.Models
             InsertNewUser();
         }
 
+        // Method to insert a new user into the database
         private void InsertNewUser()
         {
             using(var db = new DataContext())
@@ -35,6 +38,7 @@ namespace dotnet_assignment_2.Models
             }
         }
 
+        // Method to retrieve a user by username and password
         public static User GetUser(string username, string password)
         {
             try
@@ -50,7 +54,7 @@ namespace dotnet_assignment_2.Models
             }
         }
 
-        // Generate a unique user id
+        // Method to generate a unique user ID
         public static int GenerateID()
         {
             Random random = new Random();
@@ -60,8 +64,8 @@ namespace dotnet_assignment_2.Models
             while (IdExists(randomNumber));
             return randomNumber;
         }
-        
-        // Check if a user ID already exists
+
+        // Method to check if a user ID already exists
         public static bool IdExists(int id)
         {
             try
@@ -78,8 +82,8 @@ namespace dotnet_assignment_2.Models
                 return false;
             }
         }
-        
-        // Check if username already exists
+
+        // Method to check if a username already exists
         public static bool UsernameExists(string username)
         {
             try
@@ -96,8 +100,8 @@ namespace dotnet_assignment_2.Models
                 return false; 
             }
         }
-        
-        // Check if email already exists
+
+        // Method to check if an email address already exists
         public static bool EmailExists(string email)
         {
             try
@@ -115,6 +119,7 @@ namespace dotnet_assignment_2.Models
             }
         }
 
+        // Method to send an OTP (One-Time Password) code to a user's email
         public static int SendOTPCode(string email)
         {
             Random random = new Random();
@@ -124,6 +129,8 @@ namespace dotnet_assignment_2.Models
             SendEmail(subject, body, email);
             return randomNumber;
         }
+
+        // Method to send an email with the OTP code
         private static void SendEmail(string subject, string body, string email)
         {
             // Email Content Set Up

@@ -7,6 +7,7 @@ namespace dotnet_assignment_2.Components
     public partial class ExpenseVisualisation : Form
     {
         private User user;
+
         public ExpenseVisualisation(User user)
         {
             this.user = user;
@@ -14,14 +15,18 @@ namespace dotnet_assignment_2.Components
             LoadData();
         }
 
+        // This method is triggered when the value of the month picker control changes.
         private void FilterMonthPck_ValueChanged(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData(); // Re-load data when the selected month changes
         }
+
+        // LoadData retrieves and displays expense data for the selected month.
         private void LoadData()
         {
             using (var db = new DataContext())
             {
+                // Retrieve expense transactions for the selected month and year and group them by category, calculating the total for each category.
                 List<Category> categories = db.Transactions
                     .Where(t => t.UserId == user.Id && t.Date.Month == filterMonthPck.Value.Month && t.Date.Year == filterMonthPck.Value.Year && t.TransactionType == TransactionType.Expense)
                     .GroupBy(t => t.Category)
@@ -31,13 +36,14 @@ namespace dotnet_assignment_2.Components
                         Nominal = g.Sum(t => t.Nominal)
                     })
                     .ToList();
-
+                // Display the category-wise expense data in a data table.
                 expenseTbl.DataSource = categories;
-
+                // Load the pie chart with the expense data.
                 LoadPieChart(categories);
             }
         }
 
+        // LoadPieChart creates and populates the pie chart with expense data.
         private void LoadPieChart(List<Category> transactions)
         {
             chart1.Series[0].Points.Clear();
@@ -50,6 +56,7 @@ namespace dotnet_assignment_2.Components
             }
         }
 
+        // A struct to represent a category with its name and total nominal value.
         private struct Category
         {
             public string Name { get; set; }
