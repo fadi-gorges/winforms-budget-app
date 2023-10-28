@@ -28,12 +28,20 @@ namespace dotnet_assignment_2.Components
                         throw new Exception("Email already exists! Please try again!");
                     if (password.Length < 8)
                         throw new Exception("Password must be at least 8 characters! Please try again!");
-                    User user = new User(username, email, password, firstName, lastName);
-                    MessageBox.Show("Account successfully created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    User userData = new User()
+                    {
+                        Username = username,
+                        Email = email,
+                        Password = password,
+                        FirstName = firstName,
+                        LastName = lastName
+                    };
+                    MessageBox.Show("Please check your email's inbox!", "Email Verification", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Hide();
-                    Homepage homepage = new Homepage(user);
-                    homepage.ShowDialog();
-                    homepage = null;
+                    OTPVerification otpVerficaton = new OTPVerification(userData);
+                    otpVerficaton.ShowDialog();
+                    otpVerficaton = null;
                     this.Show();
                     usernameTxt.Clear();
                     emailTxt.Clear();

@@ -1,5 +1,7 @@
 ﻿using dotnet_assignment_2.Database;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
+using System.Net;
 
 namespace dotnet_assignment_2.Models
 {
@@ -111,6 +113,35 @@ namespace dotnet_assignment_2.Models
             {
                 return false;
             }
+        }
+
+        public static int SendOTPCode(string email)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(1000, 10000);
+            string subject = ".Net Budgeting App Email Verification";
+            string body = $"Please enter the following code to the provided fields within the application form. OTP Code: {randomNumber}";
+            SendEmail(subject, body, email);
+            return randomNumber;
+        }
+        private static void SendEmail(string subject, string body, string email)
+        {
+            // Email Content Set Up
+            MailMessage mailMessage = new MailMessage(); // Create a new instance of the MailMessage class to compose the email
+            mailMessage.From = new MailAddress("dvnnyemail@gmail.com"); // Set the sender's email address
+            mailMessage.To.Add(email); // Add the recipient's email address
+            mailMessage.Subject = subject; // Set the email subject
+            mailMessage.Body = body; // Set the email body
+
+            // SMTP Set Up
+            SmtpClient smtpClient = new SmtpClient(); // Create a new instance of the SmtpClient class to send the email
+            smtpClient.Host = "smtp.gmail.com"; // Set the SMTP server host
+            smtpClient.Port = 587; // Set the SMTP server port
+            smtpClient.UseDefaultCredentials = false; // Specify that default credentials should not be used
+            smtpClient.Credentials = new NetworkCredential("dvnnyemail@gmail.com", "nqin suqc hrrd cxir"); // Set the SMTP client's credentials (sender's email and password)
+            smtpClient.EnableSsl = true; // Enable SSL encryption for secure email transmission
+
+            smtpClient.Send(mailMessage); // Send the email
         }
     }
 }
