@@ -41,6 +41,13 @@ namespace dotnet_assignment_2.Components
                 if (transactionType.Length <= 0 || (transactionType == "Expense" && category.Length <= 0))
                     throw new FormatException();
 
+                if (nominal <= 0)
+                {
+                    MessageBox.Show("Nominal must be greater than 0", "Input Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Update transaction details in the database
                 transaction.UpdateTransactionDetails(nominal, date, category, notes, (transactionType == "Income" ? TransactionType.Income : TransactionType.Expense));
 
@@ -56,7 +63,7 @@ namespace dotnet_assignment_2.Components
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure to delete this transaction?", "Delete Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 // Delete the transaction from the database
                 transaction.DeleteTransaction();
