@@ -44,10 +44,10 @@ namespace dotnet_assignment_2.Components
         }
 
         // LoadPieChart creates and populates the pie chart with expense data.
-        private void LoadPieChart(List<Category> transactions)
+        private void LoadPieChart(List<Category> categories)
         {
             chart1.Series[0].Points.Clear();
-            foreach (Category c in transactions)
+            foreach (Category c in categories)
             {
                 DataPoint point = new DataPoint();
                 point.SetValueXY(c.Name, c.Nominal);

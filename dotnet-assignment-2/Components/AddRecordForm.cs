@@ -24,6 +24,14 @@ namespace dotnet_assignment_2.Components
                 double nominal = Convert.ToDouble(nominalTxt.Text);
                 if (transactionType.Length <= 0 || (transactionType == "Expense" && category.Length <= 0))
                     throw new FormatException();
+
+                if (nominal <= 0)
+                {
+                    MessageBox.Show("Nominal must be greater than 0", "Input Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Create a new income transaction and add it to the database.
                 if (transactionType == "Income")
                 {
@@ -34,12 +42,15 @@ namespace dotnet_assignment_2.Components
                 {
                     Transaction expense = new Transaction(nominal, date, category, notes, user);
                 }
-                MessageBox.Show("Transaction successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Transaction successfully added.", "Success", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 this.Close();
             }
             catch (FormatException)
             {
-                MessageBox.Show("Invalid input. Please try again!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid input. Please try again!", "Input Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
