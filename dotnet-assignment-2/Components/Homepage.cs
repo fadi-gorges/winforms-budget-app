@@ -48,6 +48,9 @@ namespace dotnet_assignment_2.Components
         // Triggered when a row in the transaction table is clicked, it opens the "TransactionDetails" form for editing and deleting.
         private void TransactionTbl_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (TransactionTbl.SelectedRows.Count == 0)
+                return;
+
             this.Hide();
             DataGridViewRow selectedRow = TransactionTbl.SelectedRows[0];
             Transaction transaction = new Transaction(Convert.ToInt32(selectedRow.Cells["Id"].Value.ToString()), Convert.ToDouble(selectedRow.Cells["Nominal"].Value.ToString()), DateTime.Parse(selectedRow.Cells["Date"].Value.ToString()), selectedRow.Cells["Category"].Value.ToString(), selectedRow.Cells["Notes"].Value.ToString(), selectedRow.Cells["TransactionType"].Value.ToString() == "Income" ? Models.TransactionType.Income : Models.TransactionType.Expense, Convert.ToInt32(selectedRow.Cells["UserId"].Value.ToString()));
