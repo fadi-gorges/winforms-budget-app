@@ -30,7 +30,7 @@ namespace dotnet_assignment_2.Components
                 expenseTxt.Text = expense > 0 ? expense.ToString("#.##") : "0";
 
                 double netCash = (income - expense);
-                netTxt.Text = netCash > 0 ? netCash.ToString("#.##") : "0";
+                netTxt.Text = netCash != 0 ? netCash.ToString("#.##") : "0";
 
                 LoadPieChart(income, expense); // Update the pie chart
             }
