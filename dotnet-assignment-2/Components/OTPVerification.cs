@@ -8,11 +8,11 @@ namespace dotnet_assignment_2.Components
         private int otpCode; // Store the OTP code
 
         // Constructor for the OTPVerification form
-        public OTPVerification(User user)
+        public OTPVerification(User user, int code)
         {
             this.userData = user; // Store the user data
             InitializeComponent();
-            this.otpCode = User.SendOTPCode(user.Email); // Generate and send an OTP code to the user's email
+            this.otpCode = code;
         }
 
         private void SignUpBtn_Click(object sender, EventArgs e)

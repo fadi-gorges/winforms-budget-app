@@ -44,10 +44,11 @@ namespace dotnet_assignment_2.Components
                         FirstName = firstName,
                         LastName = lastName
                     };
+                    int code = User.SendOTPCode(userData.Email);
                     // Display a message and open the OTPVerification form
                     MessageBox.Show("Please check your email's inbox!", "Email Verification", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Hide();
-                    OTPVerification otpVerficaton = new OTPVerification(userData);
+                    OTPVerification otpVerficaton = new OTPVerification(userData, code);
                     otpVerficaton.ShowDialog();
                     otpVerficaton = null;
                     this.Show();
